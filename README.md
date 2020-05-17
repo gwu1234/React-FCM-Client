@@ -47,8 +47,12 @@ export const initializeFirebase = () => firebase.initializeApp(firebaseConfig) ;
    }
 
 4) test with curl command 
+
 // to one web client
-curl -X POST --header "Authorization: key=AAAAb3zEEKg:APA91bEImpuXfdMdQ6kBjRCy5vVif06TK5paGJ2qWYU_NEkgZLvCgx5hC5pkVk2EJWPEbETa3ZCh1GP" \
+
+curl -X POST --header "Authorization:
+
+ key=AAAAb3zEEKg:APA91bEImpuXfdMdQ6kBjRCy5vVif06TK5paGJ2qWYU_NEkgZLvCgx5hC5pkVk2EJWPEbETa3ZCh1GP" \
     
     --Header "Content-Type: application/json" \
     
@@ -59,5 +63,9 @@ curl -X POST --header "Authorization: key=AAAAb3zEEKg:APA91bEImpuXfdMdQ6kBjRCy5v
     {\"to\":\"f1tWNmwHG6u5HgsNQC7NCZFIvioLDaH5KCx51nwVXGb0VZ8TsJQx8laQRmUD3BLjrEqlN8mZLFbhKGKpJkFWJUuULAPYJiMQDqn5zPIehERpKd-J4N9pJfQGvaK0\",\"notification\":{\"body\":\"Guoping is OK\"},\"priority\":10}"
 
 // to a group of client
-curl -H "Content-type: application/json" -H "Authorization:key=<Your Api key>"  -X POST -d '{"to": "<aUniqueKey>","data": {"hello": "This is a Firebase Cloud Messaging Device Group Message!"}}' https://fcm.googleapis.com/fcm/send
+
+curl -H "Content-type: application/json" -H "Authorization:key=<Your Api key>" \
+
+ -X POST -d '{"to": "<aUniqueKey>","data": \
+ {"hello": "This is a Firebase Cloud Messaging Device Group Message!"}}' https://fcm.googleapis.com/fcm/send
   
