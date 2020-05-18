@@ -1,14 +1,14 @@
 import firebase from 'firebase';
 
 var firebaseConfig = {
-  apiKey: "AIzaSyDUOEdYPx8XrU7oOFXZ2fEqzYTPpXwjV5o",
-  authDomain: "push-notification-c077d.firebaseapp.com",
-  databaseURL: "https://push-notification-c077d.firebaseio.com",
-  projectId: "push-notification-c077d",
-  storageBucket: "push-notification-c077d.appspot.com",
-  messagingSenderId: "478834593960",
-  appId: "1:478834593960:web:8bd4c1ca8a6f7b2d0eb29d",
-  measurementId: "G-LT0ZDWYEWL"
+  apiKey: "AIzaSyDUOEdYPx8XrU7oOFX",
+  authDomain: "push-notific",
+  databaseURL: "https://push-rebaseio.com",
+  projectId: "push-notifi",
+  storageBucket: "push-notifica.appspot.com",
+  messagingSenderId: "4788",
+  appId: "1:478834593960",
+  measurementId: "G-LT"
 };
 export const initializeFirebase = () => firebase.initializeApp(firebaseConfig) ;
   
