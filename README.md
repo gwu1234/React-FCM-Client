@@ -68,4 +68,48 @@ curl -H "Content-type: application/json" -H "Authorization:key=<Your Api key>" \
 
  -X POST -d '{"to": "<aUniqueKey>","data": \
  {"hello": "This is a Firebase Cloud Messaging Device Group Message!"}}' https://fcm.googleapis.com/fcm/send
+
+
+ 5) you may need to implement Firebase function to send notification to selected app or web app:
+ 
+ exports.sendNotification = functions.https.onRequest(async (req, res) => {
+
+      let tokens = [];
+      tokens.push("f1tWNnsIU-aHH_-TzoB-gl:APA91bExf3Myto7-p_WRhmwHG6u5HgsNQC7NCZFIvioLDaH5KCx51nwVXGb0VZ8TsJQx8laQRmUD3BLjrEqlNiMQDqn5zPIehERpKd-J4N9pJfQGvaK0");
+
+      const payload = {
+
+        notification: {
+
+          title: 'Guoping Push Notification',
+
+          body: 'Guoping Message'
+
+        }
+      };
+
+      const response = await admin.messaging().sendToDevice(tokens, payload);
+
+      console.log(response);
+
+      return null;
+
+    });
   
+  here tokens is arrays of elected app's tokens (one or multiple);
+
+  tokens can be stored at forebase database, or are sent remotely from a web app.
+
+  you need to install firebase function by the following command 
+
+  firebase deploy --only functions
+
+  and you can triger this function from a browser:
+
+  https://us-central1-FIREBASE_PROJECT_NAME.cloudfunctions.net/sendNotification
+
+
+
+
+  firebase deploy --only functions
+   
