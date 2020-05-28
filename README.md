@@ -105,10 +105,14 @@ curl -H "Content-type: application/json" -H "Authorization:key=<Your Api key>" \
   firebase deploy --only functions
 
   and you can triger this function from a browser:
+  
+  if no param included
 
   https://us-central1-FIREBASE_PROJECT_NAME.cloudfunctions.net/sendNotification
 
+  if a param included
 
+  https://us-central1-FIREBASE_PROJECT_NAME.cloudfunctions.net/pushTo?token=Kd-J4N9pJfQGvaK0
 
 
   firebase deploy --only functions

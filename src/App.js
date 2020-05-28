@@ -1,32 +1,47 @@
 import React from 'react';
 import firebase from 'firebase';
 import "./App.css"
-import { askForPermissionToReceiveNotifications } from './push-notification';
-//const messaging = firebase.messaging();
 
 class App extends React.Component {
-  //this.messaging = firebase.messaging();
-
+  
   constructor(props) {
     super(props);
-    // Don't call this.setState() here!
     this.state = { 
-        message: null 
+        message: null,
+        userToken: null
     };
     this.messaging = firebase.messaging();
   }
    
-  //const messaging = firebase.messaging();
   componentDidMount() {
-      //const messaging = firebase.messaging();
       this.messaging.onMessage((payload) => {
            console.log('Message received. ', payload);
            this.setState ({message: payload})
       });
    }
-  
+
+  requestToken = async () => {
+    let userToken= localStorage.getItem('userToken') ;
+    if (userToken != "null") {
+        console.log("userToken retrieved from local storage : ");
+        console.log(userToken);
+        this.setState({ userToken, userToken });
+      } else {
+        try {
+             const messaging = firebase.messaging();
+             await messaging.requestPermission();
+             userToken = await messaging.getToken();
+             console.log('user token retrieved from fireabse:', userToken);
+             this.setState({ userToken, userToken });
+             localStorage.setItem('userToken', userToken);
+         } catch (error) {
+             console.error(error);
+         }
+      }
+  }
+    
   render() {
-    const {message} = this.state;
+    const {message, userToken} = this.state;
     let msg = "";
     if (message) {
          console.log (message.notification.body);
@@ -38,11 +53,11 @@ class App extends React.Component {
            <header className="App-header"> 
                 Learn React
            </header>
-           <button className="Button" onClick={askForPermissionToReceiveNotifications} >
+           <button className="Button" onClick={this.requestToken} >
                  Click to receive notification
            </button>
            {msg && <p> {msg} </p>}
-           
+           {userToken && <p> {userToken} </p>}          
        </div>
       );
     }

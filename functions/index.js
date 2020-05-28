@@ -36,4 +36,20 @@ exports.addMessage = functions.https.onRequest(async (req, res) => {
       console.log(response);
       return null;
     });
+
+    exports.pushTo= functions.https.onRequest(async (req, res) => {
+      let token = req.query.token
+      let tokens = [];
+      console.log(token);
+      tokens.push(token);
+      const payload = {
+        notification: {
+          title: 'Guoping Push Notification',
+          body: 'Guoping Message'
+        }
+      };
+      const response = await admin.messaging().sendToDevice(tokens, payload);
+      console.log(response);
+      return null;
+    });
   
